@@ -177,26 +177,28 @@ public class AtaBO {
 	
 	public List<Ata> listar(int idCampus, int idDepartamento, int idOrgao, boolean publicada, int idUsuario) throws Exception{
 		if(publicada){
-			if(idOrgao >0 ){
-				return this.listarPorOrgao(idOrgao);
-			}else if(idDepartamento > 0){
-				return this.listarPorDepartamento(idDepartamento);
-			}else if(idCampus > 0){
-				return this.listarPorCampus(idCampus);
-			}else{
-				return this.listarPublicadas();
-			}
-		}else{
-			if(idOrgao >0 ){
-				return this.listarPorOrgao(idOrgao, idUsuario);
-			}else if(idDepartamento > 0){
-				return this.listarPorDepartamento(idDepartamento, idUsuario);
-			}else if(idCampus > 0){
-				return this.listarPorCampus(idCampus, idUsuario);
-			}else{
-				return this.listarNaoPublicadas(idUsuario);
-			}
+                    if(idOrgao >0 ){
+                        return this.listarPorOrgao(idOrgao);
+                    }
+                    if(idDepartamento > 0){
+                        return this.listarPorDepartamento(idDepartamento);
+                    }
+                    if(idCampus > 0){
+                        return this.listarPorCampus(idCampus);
+                    }
+                    return this.listarPublicadas();	
+                }
+		if(idOrgao >0 ){
+			return this.listarPorOrgao(idOrgao, idUsuario);
 		}
+		if(idDepartamento > 0){
+			return this.listarPorDepartamento(idDepartamento, idUsuario);
+		}
+		if(idCampus > 0){
+			return this.listarPorCampus(idCampus, idUsuario);
+		}
+
+		return this.listarNaoPublicadas(idUsuario);
 	}
 	
 	public int salvar(Ata ata) throws Exception{
