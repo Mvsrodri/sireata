@@ -16,11 +16,12 @@ public class ComboOrgao extends NativeSelect {
 	private List<Orgao> list;
 	private int idDepartamento;
 	private TipoFiltro tipoFiltro;
+        static final String WIDTH = "400px";
 	
 	public ComboOrgao(int idDepartamento, TipoFiltro tipoFiltro){
 		super("Órgão");
 		this.setNullSelectionAllowed(false);
-		this.setWidth("400px");
+		this.setWidth(WIDTH);
 		this.idDepartamento = idDepartamento;
 		this.tipoFiltro = tipoFiltro;
 		this.carregaCombo();

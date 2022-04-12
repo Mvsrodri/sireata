@@ -17,11 +17,12 @@ public class ComboCampus extends NativeSelect {
 	private List<Campus> list;
 	private boolean filterOnlyActives;
 	private TipoFiltro tipoFiltro;
+        static final String WIDTH = "400px";
 	
 	public ComboCampus(TipoFiltro tipoFiltro){
 		super("Câmpus");
 		this.setNullSelectionAllowed(false);
-		this.setWidth("400px");
+		this.setWidth(WIDTH);
 		this.filterOnlyActives = true;
 		this.tipoFiltro = tipoFiltro;
 		this.carregaCombo();
