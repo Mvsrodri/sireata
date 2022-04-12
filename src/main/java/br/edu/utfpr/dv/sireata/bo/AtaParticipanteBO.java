@@ -3,7 +3,6 @@ package br.edu.utfpr.dv.sireata.bo;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import br.edu.utfpr.dv.sireata.dao.AtaParticipanteDAO;
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
 
@@ -64,19 +63,14 @@ public class AtaParticipanteBO {
 	}
 	
 	public void excluir(AtaParticipante participante) throws Exception{
-		this.excluir(participante.getIdAtaParticipante());
-	}
-	
-	public void excluir(int id) throws Exception{
 		try{
 			AtaParticipanteDAO dao = new AtaParticipanteDAO();
 			
-			dao.excluir(id);
+			dao.excluir(participante.getIdAtaParticipante());
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			
 			throw new Exception(e.getMessage());
 		}
 	}
-
 }
