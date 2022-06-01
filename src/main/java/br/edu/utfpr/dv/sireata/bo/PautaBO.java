@@ -6,14 +6,18 @@ import java.util.logging.Logger;
 
 import br.edu.utfpr.dv.sireata.dao.PautaDAO;
 import br.edu.utfpr.dv.sireata.model.Pauta;
+import br.edu.utfpr.dv.sireata.factory.FactoryDAO;
+import br.edu.utfpr.dv.sireata.factory.DAO;
 
 public class PautaBO {
 	
 	public Pauta buscarPorId(int id) throws Exception{
 		try{
-			PautaDAO dao = new PautaDAO();
+			FactoryDAO FctDAO = new FactoryDAO();
+
+			DAO dao = FctDAO.getDAO("Pauta");
 			
-			return dao.buscarPorId(id);
+			return (Pauta) dao.buscarPorId(id);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			
@@ -21,11 +25,13 @@ public class PautaBO {
 		}
 	}
 	
-	public List<Pauta> listarPorAta(int idAta) throws Exception{
+	public List listarPorAta(int idAta) throws Exception{
 		try{
-			PautaDAO dao = new PautaDAO();
+			FactoryDAO FctDAO = new FactoryDAO();
+
+			DAO dao = FctDAO.getDAO("Pauta");
 			
-			return dao.listarPorAta(idAta);
+			return dao.listarPor(idAta);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			
@@ -47,7 +53,9 @@ public class PautaBO {
 			
 			this.validarDados(pauta);
 			
-			PautaDAO dao = new PautaDAO();
+			FactoryDAO FctDAO = new FactoryDAO();
+
+			DAO dao = FctDAO.getDAO("Pauta");
 			
 			return dao.salvar(pauta);
 		}catch(Exception e){
@@ -63,7 +71,9 @@ public class PautaBO {
 	
 	public void excluir(int id) throws Exception{
 		try{
-			PautaDAO dao = new PautaDAO();
+			FactoryDAO FctDAO = new FactoryDAO();
+
+			DAO dao = FctDAO.getDAO("Pauta");
 			
 			dao.excluir(id);
 		}catch(Exception e){

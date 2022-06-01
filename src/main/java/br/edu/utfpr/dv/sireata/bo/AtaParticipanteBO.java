@@ -5,14 +5,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import br.edu.utfpr.dv.sireata.dao.AtaParticipanteDAO;
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
+import br.edu.utfpr.dv.sireata.factory.FactoryDAO;
+import br.edu.utfpr.dv.sireata.factory.DAO;
 
 public class AtaParticipanteBO {
 	
 	public AtaParticipante buscarPorId(int id) throws Exception{
 		try{
-			AtaParticipanteDAO dao = new AtaParticipanteDAO();
+			FactoryDAO FctDAO = new FactoryDAO();
+
+			DAO dao = FctDAO.getDAO("AtaParticipante");
 			
-			return dao.buscarPorId(id);
+			return (AtaParticipante) dao.buscarPorId(id);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			
@@ -22,9 +26,11 @@ public class AtaParticipanteBO {
 	
 	public List<AtaParticipante> listarPorAta(int idAta) throws Exception{
 		try{
-			AtaParticipanteDAO dao = new AtaParticipanteDAO();
+			FactoryDAO FctDAO = new FactoryDAO();
+
+			DAO dao = FctDAO.getDAO("AtaParticipante");
 			
-			return dao.listarPorAta(idAta);
+			return dao.listarPor(idAta);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			
@@ -52,7 +58,9 @@ public class AtaParticipanteBO {
 			
 			this.validarDados(participante);
 			
-			AtaParticipanteDAO dao = new AtaParticipanteDAO();
+			FactoryDAO FctDAO = new FactoryDAO();
+
+			DAO dao = FctDAO.getDAO("AtaParticipante");
 			
 			return dao.salvar(participante);
 		}catch(Exception e){
@@ -64,7 +72,9 @@ public class AtaParticipanteBO {
 	
 	public void excluir(AtaParticipante participante) throws Exception{
 		try{
-			AtaParticipanteDAO dao = new AtaParticipanteDAO();
+			FactoryDAO FctDAO = new FactoryDAO();
+
+			DAO dao = FctDAO.getDAO("AtaParticipante");
 			
 			dao.excluir(participante.getIdAtaParticipante());
 		}catch(Exception e){
