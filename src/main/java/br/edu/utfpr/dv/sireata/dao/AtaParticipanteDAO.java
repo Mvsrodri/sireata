@@ -1,5 +1,6 @@
 package br.edu.utfpr.dv.sireata.dao;
 
+import br.edu.utfpr.dv.sireata.factory.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +11,8 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
 
-public class AtaParticipanteDAO {
-	
+public class AtaParticipanteDAO implements DAO<AtaParticipante>{
+	@Override
 	public AtaParticipante buscarPorId(int id) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -41,8 +42,8 @@ public class AtaParticipanteDAO {
 				conn.close();
 		}
 	}
-	
-	public List<AtaParticipante> listarPorAta(int idAta) throws SQLException{
+	@Override
+	public List<AtaParticipante> listarPor(int idAta) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -71,7 +72,7 @@ public class AtaParticipanteDAO {
 				conn.close();
 		}
 	}
-	
+	@Override
 	public int salvar(AtaParticipante participante) throws SQLException{
 		boolean insert = (participante.getIdAtaParticipante() == 0);
 		Connection conn = null;
@@ -118,7 +119,7 @@ public class AtaParticipanteDAO {
 				conn.close();
 		}
 	}
-	
+	@Override
 	public void excluir(int id) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;

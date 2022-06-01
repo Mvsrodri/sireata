@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Anexo;
+import br.edu.utfpr.dv.sireata.factory.DAO;
 
-public class AnexoDAO {
-	
+public class AnexoDAO implements DAO<Anexo>{
+	@Override
 	public Anexo buscarPorId(int id) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -41,7 +42,8 @@ public class AnexoDAO {
 		}
 	}
 	
-	public List<Anexo> listarPorAta(int idAta) throws SQLException{
+	@Override
+	public List<Anexo> listarPor(int idAta) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -70,6 +72,7 @@ public class AnexoDAO {
 		}
 	}
 	
+	@Override
 	public int salvar(Anexo anexo) throws SQLException{
 		boolean insert = (anexo.getIdAnexo() == 0);
 		Connection conn = null;
@@ -114,7 +117,7 @@ public class AnexoDAO {
 				conn.close();
 		}
 	}
-	
+	@Override
 	public void excluir(int id) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;
